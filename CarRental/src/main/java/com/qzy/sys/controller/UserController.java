@@ -2,12 +2,15 @@ package com.qzy.sys.controller;
 
 
 import com.qzy.sys.domain.Role;
+import com.qzy.sys.domain.User;
 import com.qzy.sys.service.UserService;
 import com.qzy.sys.utils.DataGridView;
 import com.qzy.sys.utils.ResultObj;
+import com.qzy.sys.utils.WebUtils;
 import com.qzy.sys.vo.RoleVo;
 import com.qzy.sys.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -113,8 +116,37 @@ public class UserController {
             e.printStackTrace();
             return ResultObj.DISPATCH_ERROR;
         }
-
-
     }
+
+    //修改密码
+    @RequestMapping("changePassword")
+    public ResultObj changePassword(String oldPassword, String newPassword) {
+        User user = (User) WebUtils.getHttpSession().getAttribute("user");
+        if (!DigestUtils.md5DigestAsHex(oldPassword.getBytes()).equals(user.getPwd())) {
+            return ResultObj.WRONG_OLD_PWD;
+        } else {
+            try {
+                UserVo userVo = new UserVo();
+                userVo.setPwd(DigestUtils.md5DigestAsHex(newPassword.getBytes()));
+                userVo.setUserid(user.getUserid());
+                userService.updateUser(userVo);
+                WebUtils.getHttpSession().invalidate();
+                return ResultObj.RESET_SUCCESS;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResultObj.UPDATE_ERROR;
+            }
+        }
+    }
+
+
+    //获取个人资料
+    @RequestMapping("loadProfile")
+    public User loadProfile(){
+        User user = (User) WebUtils.getHttpSession().getAttribute("user");
+        user=userService.queryUserByUserId(user.getUserid());
+        return user;
+    }
+
 
 }

@@ -46,6 +46,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
+<!--        拦截以action为后缀的请求-->
         <url-pattern>*.action</url-pattern>
     </servlet-mapping>
 
@@ -68,7 +69,8 @@
     </filter-mapping>
     <servlet>
         <servlet-name>DruidStatView</servlet-name>
-        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class><!-- 这个StatViewServlet的用途包括：提供监控信息展示的html页面;提供监控信息的JSON API -->
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet
+        </servlet-class><!-- 这个StatViewServlet的用途包括：提供监控信息展示的html页面;提供监控信息的JSON API -->
     </servlet>
     <servlet-mapping>
         <servlet-name>DruidStatView</servlet-name>
@@ -76,5 +78,7 @@
     </servlet-mapping>
 
     <!--  druid数据源监控配置结束-->
+
+
 
 </web-app>

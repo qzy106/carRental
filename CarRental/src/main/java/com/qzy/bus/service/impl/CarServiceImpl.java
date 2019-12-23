@@ -6,6 +6,8 @@ import com.qzy.bus.domain.Car;
 import com.qzy.bus.mapper.CarMapper;
 import com.qzy.bus.service.CarService;
 import com.qzy.bus.vo.CarVo;
+import com.qzy.sys.constast.SysConstast;
+import com.qzy.sys.utils.AppFileUtils;
 import com.qzy.sys.utils.DataGridView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,10 +41,21 @@ public class CarServiceImpl implements CarService {
         carMapper.updateByPrimaryKeySelective(carVo);
     }
 
+    @Override
+    public Car queryCarByNumber(String carnumber) {
+        return carMapper.selectByPrimaryKey(carnumber);
+    }
+
 
     @Override
-    public void deleteCar(String identity) {
-        carMapper.deleteByPrimaryKey(identity);
+    public void deleteCar(String carnumber) {
+        //先删除图片
+        Car car = carMapper.selectByPrimaryKey(carnumber);
+        if(!car.getCarimg().equals(SysConstast.DEFAULT_CAR_IMG)){
+            AppFileUtils.deleteFile(car.getCarimg());
+        }
+        //删除数据库数据
+        carMapper.deleteByPrimaryKey(carnumber);
     }
 
     //批量删除

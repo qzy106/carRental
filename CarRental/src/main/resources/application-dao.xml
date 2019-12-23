@@ -29,7 +29,9 @@
     <!-- 声明sessionFactory  并注入mybatis.cfg.xml-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据源 -->
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource"/>
+        <!--日志-->
+        <property name="configLocation" value="classpath:mybatis.cfg.xml"/>
         <!-- 注入mapper.xml -->
         <property name="mapperLocations">
             <array>
@@ -51,6 +53,7 @@
             <value>
                 com.qzy.sys.mapper
                 com.qzy.bus.mapper
+                com.qzy.stat.mapper
             </value>
         </property>
         <!-- 注入sqlSessionFactory -->

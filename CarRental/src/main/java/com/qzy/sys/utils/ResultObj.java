@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class ResultObj {
 
+
     private Integer code=0;
     private String msg;
 
@@ -17,6 +18,7 @@ public class ResultObj {
 	//更新
 	public static final ResultObj UPDATE_SUCCESS=new ResultObj(SysConstast.CODE_SUCCESS, SysConstast.UPDATE_SUCCESS);
 	public static final ResultObj UPDATE_ERROR=new ResultObj(SysConstast.CODE_ERROR, SysConstast.UPDATE_ERROR);
+	public static final ResultObj WRONG_OLD_PWD = new ResultObj(SysConstast.CODE_ERROR,SysConstast.WRONG_OLD_PWD);
 
 	//删除
 	public static final ResultObj DELETE_SUCCESS=new ResultObj(SysConstast.CODE_SUCCESS, SysConstast.DELETE_SUCCESS);

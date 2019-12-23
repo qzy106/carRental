@@ -18,4 +18,5 @@ public interface CustomerService {
 
     void updateCustomer(CustomerVo customerVo);
 
+    Customer queryCustomerByIdentity(String identity);
 }

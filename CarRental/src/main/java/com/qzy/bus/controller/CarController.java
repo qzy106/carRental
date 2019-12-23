@@ -64,6 +64,14 @@ public class CarController {
     @RequestMapping("updateCar")
     public ResultObj updateCar(CarVo carVo) {
         try {
+            String carimg=carVo.getCarimg();
+            //如果提交的图片是临时文件，则说明图片发生了改变
+            if(carimg.endsWith(SysConstast.FILE_UPLOAD_TEMP)){
+                //更新图片名字，去掉后缀并设置到carVo中
+                carVo.setCarimg(AppFileUtils.updateFileName(carVo.getCarimg(), SysConstast.FILE_UPLOAD_TEMP));
+                //移除之前的图片
+                AppFileUtils.deleteFile(carService.queryCarByNumber(carVo.getCarnumber()).getCarimg());
+            }
             carService.updateCar(carVo);
             return ResultObj.UPDATE_SUCCESS;
         } catch (Exception e) {

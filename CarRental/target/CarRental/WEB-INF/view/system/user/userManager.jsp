@@ -199,7 +199,7 @@
             , url: '${ctx}/user/loadAllUser.action'  //数据接口
             , title: '用户数据表'  //数据导出来时的标题
             , toolbar: '#userToolBar'  //头部工具栏
-            , height: 'full-200'
+            , height: 'full-250'
             , cols: [[   //列表数据
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'userid', title: 'ID', align: 'center', width: '80'}

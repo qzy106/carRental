@@ -88,4 +88,19 @@ public class AppFileUtils {
         }
         return null;
     }
+
+
+
+
+    //删除图片
+    public static void deleteFile(String carimg) {
+        try {
+            File file = new File(PATH, carimg);
+            if (file.exists()) {
+                file.delete();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

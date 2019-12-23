@@ -159,7 +159,7 @@
             , title: '公告数据表'  //数据导出来时的标题
             , cellMinWidth: 100 //设置列的最小默认宽度
             , toolbar: '#userToolBar'  //头部工具栏
-            , height: 'full-150'
+            , height: 'full-200'
             , cols: [[   //列表数据
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'id', title: 'ID', align: 'center'}

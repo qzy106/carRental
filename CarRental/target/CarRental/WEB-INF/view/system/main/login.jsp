@@ -18,19 +18,21 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="icon" href="${ctx}/resources/favicon.ico">
-    <link rel="stylesheet" href="${ctx}/resources/layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="${ctx}/resources/css/public.css" media="all" />
+    <link rel="stylesheet" href="${ctx}/resources/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="${ctx}/resources/css/public.css" media="all"/>
 </head>
 <body class="loginBody">
 <form class="layui-form" id="loginForm" action="${ctx}/Login/login.action" method="post">
     <div class="login_face"><img src="${ctx}/resources/images/face.jpg" class="userAvatar"></div>
     <div class="layui-form-item input-item">
         <label for="loginname">用户名</label>
-        <input type="text" placeholder="请输入用户名" autocomplete="off" id= "loginname" name="loginname" class="layui-input" lay-verify="required">
+        <input type="text" placeholder="请输入用户名" autocomplete="off" id="loginname" name="loginname" class="layui-input"
+               lay-verify="required">
     </div>
     <div class="layui-form-item input-item">
         <label for="pwd">密码</label>
-        <input type="password" placeholder="请输入密码" autocomplete="off" id="pwd" name="pwd" class="layui-input" lay-verify="required">
+        <input type="password" placeholder="请输入密码" autocomplete="off" id="pwd" name="pwd" class="layui-input"
+               lay-verify="required">
     </div>
     <div class="layui-form-item input-item" id="imgCode">
         <label for="code">验证码</label>
@@ -47,32 +49,37 @@
 <script type="text/javascript" src="${ctx}/resources/layui/layui.js"></script>
 <script type="text/javascript" src="${ctx}/resources/js/cache.js"></script>
 <script type="text/javascript">
-    layui.use(['form','layer','jquery'],function(){
+    layui.use(['form', 'layer', 'jquery'], function () {
         var form = layui.form,
-            layer = parent.layer === undefined ? layui.layer : top.layer
-        $ = layui.jquery;
+            layer = parent.layer === undefined ? layui.layer : top.layer,
+            $ = layui.jquery;
+
+        //解决重定向嵌套问题
+        if (window.top.location.href !== location.href) {
+            window.top.location.href = location.href;
+        }
         //登录按钮
-        form.on("submit(login)",function(data){
-            $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
-            setTimeout(function(){
+        form.on("submit(login)", function (data) {
+            $(this).text("登录中...").attr("disabled", "disabled").addClass("layui-disabled");
+            setTimeout(function () {
                 $("#loginForm").submit();
-            },1000);
+            }, 1000);
             return false;
         });
 
         //表单输入效果
-        $(".loginBody .input-item").click(function(e){
+        $(".loginBody .input-item").click(function (e) {
             e.stopPropagation();
             $(this).addClass("layui-input-focus").find(".layui-input").focus();
         });
-        $(".loginBody .layui-form-item .layui-input").focus(function(){
+        $(".loginBody .layui-form-item .layui-input").focus(function () {
             $(this).parent().addClass("layui-input-focus");
         });
-        $(".loginBody .layui-form-item .layui-input").blur(function(){
+        $(".loginBody .layui-form-item .layui-input").blur(function () {
             $(this).parent().removeClass("layui-input-focus");
-            if($(this).val() != ''){
+            if ($(this).val() != '') {
                 $(this).parent().addClass("layui-input-active");
-            }else{
+            } else {
                 $(this).parent().removeClass("layui-input-active");
             }
         })

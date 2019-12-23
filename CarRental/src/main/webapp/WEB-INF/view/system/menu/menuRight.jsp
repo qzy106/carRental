@@ -331,6 +331,8 @@
 
 
     });
+
+
        //根据菜单树刷新数据表格
         function reloadTable(id){
             tableIns.reload({

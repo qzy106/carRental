@@ -24,4 +24,7 @@ public interface UserService {
     DataGridView queryUserRole(Integer userid);
 
     void saveUserRole(UserVo userVo);
+
+
+    User queryUserByUserId(Integer userid);
 }

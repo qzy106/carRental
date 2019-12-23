@@ -41,6 +41,13 @@ public class CustomerServiceImpl implements CustomerService {
         customerMapper.updateByPrimaryKeySelective(customerVo);
     }
 
+    //通过身份证号查询顾客
+    @Override
+    public Customer queryCustomerByIdentity(String identity) {
+
+        return customerMapper.selectByPrimaryKey(identity);
+    }
+
 
     @Override
     public void deleteCustomer(String identity) {

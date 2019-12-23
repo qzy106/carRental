@@ -9,6 +9,7 @@ import com.qzy.sys.mapper.RoleMapper;
 import com.qzy.sys.mapper.UserMapper;
 import com.qzy.sys.service.UserService;
 import com.qzy.sys.utils.DataGridView;
+import com.qzy.sys.utils.WebUtils;
 import com.qzy.sys.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService {
     public DataGridView queryAllUser(UserVo userVo) {
         Page<Object> page = PageHelper.startPage(userVo.getPage(), userVo.getLimit());
         List<User> data = userMapper.queryAllUser(userVo);
-        return new DataGridView(page.getTotal(),data);
+        return new DataGridView(page.getTotal(), data);
 
     }
 
@@ -74,7 +75,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteBatchUser(Integer[] ids) {
-        for(Integer id:ids){
+        for (Integer id : ids) {
             deleteUser(id);
         }
     }
@@ -96,21 +97,21 @@ public class UserServiceImpl implements UserService {
         //首先查询出所有角色
         List<Role> allRoles = roleMapper.queryAllRole(role);
         //然后根据用户id查询出该用户拥有的所有角色
-        List<Role> userRoles=roleMapper.queryUserRoleByUid(1,userid);
-        List<Map<String,Object>> data= new ArrayList<>();
-        for(Role r1:allRoles){
+        List<Role> userRoles = roleMapper.queryUserRoleByUid(1, userid);
+        List<Map<String, Object>> data = new ArrayList<>();
+        for (Role r1 : allRoles) {
             //这里的这个字段根layui要求的字段一致
-            Boolean LAY_CHECKED=false;
-            for(Role r2:userRoles){
-                if(r1.getRoleid()==r2.getRoleid()){
-                    LAY_CHECKED=true;
+            Boolean LAY_CHECKED = false;
+            for (Role r2 : userRoles) {
+                if (r1.getRoleid() == r2.getRoleid()) {
+                    LAY_CHECKED = true;
                 }
             }
-            Map<String,Object> map= new HashMap<>();
-            map.put("roleid",r1.getRoleid());
-            map.put("rolename",r1.getRolename());
-            map.put("roledesc",r1.getRoledesc());
-            map.put("LAY_CHECKED",LAY_CHECKED);
+            Map<String, Object> map = new HashMap<>();
+            map.put("roleid", r1.getRoleid());
+            map.put("rolename", r1.getRolename());
+            map.put("roledesc", r1.getRoledesc());
+            map.put("LAY_CHECKED", LAY_CHECKED);
             data.add(map);
         }
         return new DataGridView(data);
@@ -121,11 +122,17 @@ public class UserServiceImpl implements UserService {
         //根据用户id删除sys_role_user里面的内容
         roleMapper.deleteRoleUserByUid(userVo.getUserid());
         //添加角色分配内容
-        Integer []ids=userVo.getIds();
-        if(ids!=null&&ids.length>0){
-            for(Integer rid:ids){
-                roleMapper.insertUserRole(userVo.getUserid(),rid);
+        Integer[] ids = userVo.getIds();
+        if (ids != null && ids.length > 0) {
+            for (Integer rid : ids) {
+                roleMapper.insertUserRole(userVo.getUserid(), rid);
             }
         }
     }
+
+    @Override
+    public User queryUserByUserId(Integer userid) {
+        return userMapper.selectByPrimaryKey(userid);
+    }
+
 }

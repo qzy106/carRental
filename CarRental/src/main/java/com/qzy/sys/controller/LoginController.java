@@ -52,6 +52,12 @@ public class LoginController {
 
     }
 
+    @RequestMapping("logout")
+    public String logout(){
+        WebUtils.getHttpSession().invalidate();
+        return "redirect:toLogin.action";
+    }
+
 
 
 }

@@ -1,10 +1,135 @@
+
+
 ### 课设问题记录
+
+------
+
+[^时间]: 2019-12-8
+
+#### 1.查询时时间范围
+
+**CDATA表达式**
+
+```xml
+and createtime <![CDATA[<=]]>#{endTime}
+```
+
+
+
+#### 2.关于@DateTimeFormat和@JsonFormat区别
+
+有的时候由前台jsp页面填写一个日期，提交到后台spring mvc的时候，我们希望直接转换成一个Date类型，而不是由一个string 类型接收，然后再通过simpleDateFormat来进行转格式，这样太麻烦了，代码会显的很乱，spring为我们提供了类型转化器，写起来也是很麻烦，我们的需求很简单就是由框架帮我们去自动的转换类型而不是手动的转换，在这样的背景下，我们可以使用@DateTimeFormat注解。此外我们还有一个需求就是我们从数据库里面查询到了日期，然后我们想把这个日期自动的变成string类型，这时我们可以使用@JsonFormat注解。 
+
+
+
+**fastJson使用@JsonField**
+
+```java
+  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+  @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+```
+
+
+
+------
+
+[^时间]: 2019-12-9
+
+#### 3.RBAC权限管理
+
+- 一个人可以有多个角色。
+- 一个角色可以有多个人。
+- 一个角色可以有多个权限。
+- 一个权限可以分配给多个角色。
+
+| 菜单表(sys_menu) |            |              |        |            |              |                |          |            |
+| ---------------- | ---------- | ------------ | ------ | ---------- | ------------ | -------------- | -------- | ---------- |
+| id               | pid        | name         | href   | open       | parent       | icon           | tabicon  | available  |
+|                  | (父节点id) |              | (地址) | (是否展开) | (是否父节点) |                |          | (是否可用) |
+| 1                | 0          | 汽车出租系统 |        |            |              | /resouce/1.png | icon-add |            |
+| 2                | 1          | 基础管理     |        |            |              |                |          |            |
+| 3                | 2          | 客户管理     |        |            |              |                |          |            |
+| 4                | 2          | 车辆管理     |        |            |              |                |          |            |
+| 5                | 1          | 业务管理     |        |            |              |                |          |            |
+| 6                | 5          | 汽车出租     |        |            |              |                |          |            |
+| 7                | 5          | 出租单管理   |        |            |              |                |          |            |
+
+| 角色表sys_role |          |        |
+| -------------- | -------- | ------ |
+| id             | name     | remark |
+| 1              | CEO      | CEO    |
+| 2              | 部门经理 | 经理   |
+| 3              | BA       | 保安   |
+
+| 用户表(sys_user) |          |          |          |      |         |           |          |          |
+| ---------------- | -------- | -------- | -------- | ---- | ------- | --------- | -------- | -------- |
+| id               | loginame | identity | realname | sex  | address | phone     | pwd      | position |
+| 1                | admin    | 12312    | 小明     | 1    | 武汉    | 134131313 | 123456   | CEO      |
+| 2                | zs       | 12312312 | 张三     | 0    | 深圳    | 12313131  | 12345678 | BA       |
+
+| 角色和菜单关系表（sys_role_menu） |               |
+| --------------------------------- | ------------- |
+| rid(角色编号)                     | mid(菜单编号) |
+| 1                                 | 1             |
+| 1                                 | 2             |
+| 1                                 | 3             |
+| 1                                 | 4             |
+| 1                                 | 5             |
+| 1                                 | 6             |
+| 1                                 | 7             |
+| 2                                 | 1             |
+| 2                                 | 2             |
+| 2                                 | 3             |
+| 2                                 | 4             |
+| 3                                 | 1             |
+| 3                                 | 2             |
+| 3                                 | 3             |
+
+| 用户和角色关系表（sys_role_user） |               |
+| --------------------------------- | ------------- |
+| uid(用户编号）                    | rid(角色编号) |
+| 1                                 | 1             |
+| 2                                 | 2             |
+| 2                                 | 3             |
+
+#####1.已知角色id=1 查询当前角色所拥有的菜单
+
+```sql
+select t1.* from sys_menu t1 inner join sys_role_menu t2 on(t1.id=t2.mid) where t2.rid=1
+```
+
+
+
+
+
+##### 2.已知用户id=userid  查询当前用户拥有的所有角色
+
+```sql
+select t1.* from sys_role t1 inner join sys_role_user t2 on(t1.id=t2.rid) where t2.uid=userid
+```
+
+
+
+##### 3.已知用户id=userid 查询当前用户拥有的所有权限{菜单}
+
+```sql
+select distinct t1.* from sys_menu t1 inner join sys_role_menu t2 inner join sys_role_user t3 on(t1.id=t2.mid and t2.rid=t3.rid)
+
+where t3.uid=userid
+
+```
+
+
+
+
+
+
 
 ------
 
 [^时间]: 2019-12-10
 
-#### 表单的reset方法不会重置隐藏域名
+#### 4.表单的reset方法不会重置隐藏域名
 
 解决方法：将隐藏域改成如下格式
 
@@ -28,7 +153,7 @@
 
 [^时间]: 2019-12-11
 
-#### druid数据源监控配置
+#### 5.druid数据源监控配置
 
 ```xml
  <!-- 声明dataSource -->
@@ -49,6 +174,8 @@
 ```
 
 
+
+web.xml
 
 ```xml
 <!--  druid数据源监控配置开始-->
@@ -96,7 +223,7 @@
 
 [^时间]: 2019-12-11
 
-#### 解决layui数据表格删除最后一条数据的问题
+#### 6.解决layui数据表格删除最后一条数据的问题（删除后停留在最后一页，显示没有数据）
 
 ![1576052681943](.\课设问题记录\1576052681943.png)
 
@@ -114,7 +241,7 @@
 
 [^时间]: 2019-12-12
 
-#### 文件的上传与下载
+#### 7.文件的上传与下载
 
 **layui要求返回的数据格式**
 
@@ -377,11 +504,11 @@ public class RandomUtils {
 
 ------
 
-#### 文件上传的一些处理思路
+#### 8.文件上传的一些处理思路
 
 [^时间]: 2019-12-14
 
-由于我们设置的文件上传是自动上传，而上传的图片不一定是最终需要的图片，因此我们在设置文件名是，可以在文件扩展名上加上_temp，以标识这是一个临时文件，在用户点击保存后，再将文件进行重命名去除后缀，并将最终的图片保存到数据库中。对于临时文件，我们可以设置一个定时任务将其清除。
+由于我们设置的文件上传是自动上传，而上传的图片不一定是最终需要的图片，因此我们在设置文件名时，可以在文件扩展名上加上_temp，以标识这是一个临时文件，在用户点击保存后，再将文件进行重命名去除后缀，并将最终的图片保存到数据库中。对于临时文件，我们可以设置一个定时任务将其清除。
 
 **处理示例**：
 
@@ -413,3 +540,165 @@ public class RandomUtils {
 
 
 
+------
+
+#### 9.时间问题(相差八个小时)
+
+[^时间]: 2019-12-18
+
+![1576638403551](课设问题记录\1576638403551.png)
+
+
+
+
+
+
+
+------
+
+#### 10.url中的路径问题
+
+- 以http:或者https:开头的。例如http:www.baidu.com，该类地址无需拼装即可直接访问。
+
+- 以//（双斜杠）开头的。例如//g.csdnimg.cn/baidu-search/1.0.0/baidu-search.js，该类地址也可以直接访问的。意思是根据当前页面的请求协议在头部自动加上url协议。用来处理网站使用的协议和网页请求外网资源协议不一致。
+
+- 以./开头，表示当前路径。假设当前网址为http://www.baidu.com/CRM/css/cool.css。那么当前路径为
+
+  http://www.baidu.com/CRM/css。
+
+- 以…/开头，表示上一级路径。还是上面的地址，那么上一级路径为http://www.baidu.com/CRM。
+
+- 直接以路径开头，例如css/index.html。这类同等于./，即当前路径。
+
+- 以/（斜杠）开头的，证明在根目录下面。例如有/index.html，那么他的地址为www.baidu.com/index.html。
+
+  
+
+
+
+------
+
+#### 11.项目统计分析
+
+[^时间]: 2019-12-19
+
+**哪些数据有统计价值呢？**
+
+客户：
+
+- 客户性别
+- 客户地区
+- 客户职业
+- 录入时间
+
+车辆管理：
+
+- 车辆类型
+- 购买价格
+- 出租状态（当前）
+
+出租单:
+
+- 车牌号（哪种车出租的多）
+- 操作员（统计业绩）
+
+检查单：
+
+- 统计车辆违章修理支出
+
+
+
+
+
+------
+
+#### 12.按照日期在数据库中查询数据
+
+[^时间]: 2019-12-19
+
+- 从出租单表中查询操作员的年度销售额
+
+  [^参考链接]: <https://www.w3school.com.cn/sql/func_date_format.asp> 
+
+```sql
+ select opername as name,sum(price) as value from bus_rent where DATE_FORMAT(createtime,"%Y")=#{year} group by opername
+```
+
+- 查询公司年度十二个月份的销售额
+
+  [^参考链接]: <https://www.w3school.com.cn/sql/sql_union.asp> 
+
+```sql
+select sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'01')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'02')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'03')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'04')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'05')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'06')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'07')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'08')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'09')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'10')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'11')
+		UNION all
+		select
+		sum(price) from bus_rent where
+		DATE_FORMAT(createtime,"%Y%m")=concat(#{value},'12')
+    </select>
+```
+
+
+
+
+
+
+
+
+
+------
+
+#### 13.解决页面超时跳转到登录页面被框架页面嵌套的问题
+
+session失效后，刷新tab页跳转到登陆页面后，登陆页面会嵌套在主页框架中，解决方法如下：
+
+在login.jsp中加入下面的js代码
+
+```js
+
+        if (window.top.location.href !== location.href) {
+            window.top.location.href = location.href;
+        }
+```
+
+完美解决！！！

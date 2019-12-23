@@ -1,5 +1,6 @@
 package com.qzy.bus.service;
 
+import com.qzy.bus.domain.Car;
 import com.qzy.bus.vo.CarVo;
 import com.qzy.sys.utils.DataGridView;
 
@@ -17,4 +18,5 @@ public interface CarService {
 
     void updateCar(CarVo carVo);
 
+    Car queryCarByNumber(String carnumber);
 }

@@ -32,4 +32,18 @@ public class SysConstast {
     public static final String FILE_UPLOAD_TEMP ="_temp" ;
     //默认图片地址
     public static final String DEFAULT_CAR_IMG = "images/default";
+
+    //出租单前缀
+    public static final String RENT_CAR_PREFIX = "CZ";
+    //检查单前缀
+    public static final String CHECK_CAR_PREFIX = "CK";
+
+    //车辆出租状态
+    public static final Integer CAR_RENT_TRUE = 1;
+    public static final Integer CAR_RENT_FALSE = 0;
+    //车辆归还状态
+    public static final Integer CAR_RENT_BACK_TRUE = 1;
+    public static final Integer CAR_RENT_BACK_FALSE = 0;
+
+    public static final String WRONG_OLD_PWD = "旧密码输入错误，请检查后重新修改";
 }

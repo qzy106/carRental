@@ -25,9 +25,11 @@
 
     <!-- 监听器开始 -->
     <listener>
+        <!--实现了接口servletContextListener,在web工程初始化之前，它先完成对spring IOC容器的初始化，在关闭时完成资源的释放        -->
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <context-param>
+        <!--  告诉Spring MVC其Spring IOC配置文件在哪里-->
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
@@ -46,6 +48,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
+        <!--  拦截以action为后缀的请求-->
         <url-pattern>*.action</url-pattern>
     </servlet-mapping>
 
@@ -68,7 +71,8 @@
     </filter-mapping>
     <servlet>
         <servlet-name>DruidStatView</servlet-name>
-        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class><!-- 这个StatViewServlet的用途包括：提供监控信息展示的html页面;提供监控信息的JSON API -->
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet
+        </servlet-class><!-- 这个StatViewServlet的用途包括：提供监控信息展示的html页面;提供监控信息的JSON API -->
     </servlet>
     <servlet-mapping>
         <servlet-name>DruidStatView</servlet-name>
@@ -76,5 +80,7 @@
     </servlet-mapping>
 
     <!--  druid数据源监控配置结束-->
+
+
 
 </web-app>

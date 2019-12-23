@@ -9,8 +9,9 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
-	<context:component-scan base-package="com.qzy.sys.service.impl"></context:component-scan>
-	<context:component-scan base-package="com.qzy.bus.service.impl"></context:component-scan>
+	<context:component-scan base-package="com.qzy.sys.service.impl"/>
+	<context:component-scan base-package="com.qzy.bus.service.impl"/>
+	<context:component-scan base-package="com.qzy.stat.service.impl"/>
 
 	<!--    配置事务管理器，配置在service层-->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

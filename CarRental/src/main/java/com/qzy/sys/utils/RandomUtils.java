@@ -11,6 +11,7 @@ public class RandomUtils {
 	
 	private static SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd");
 	private static SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	private static SimpleDateFormat sdf3=new SimpleDateFormat("yyyyMMdd_HHmmss_SSS");
 	private static Random random=new Random();
 	
 	//得到当日日期作为图片保存文件的文件夹
@@ -35,5 +36,10 @@ public class RandomUtils {
 		return time+num+fileSuffix+suffix;
 	}
 
-	
+
+	//使用时间
+	public static String createStringUseTime(String prefix) {
+		return prefix+"_"+sdf3.format(new Date())+"_"+(random.nextInt(90000)+10000);
+
+	}
 }

@@ -45,20 +45,17 @@
                                                 width="35" height="35"><cite
                             class="adminName">${user.realname}</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" data-url="page/user/userInfo.html"><i class="seraph icon-ziliao"
+                        <dd><a href="javascript:;" data-url="${ctx}/sys/toProfileChangeManager.action"><i class="seraph icon-ziliao"
                                                                                          data-icon="icon-ziliao"></i><cite>个人资料</cite></a>
                         </dd>
-                        <dd><a href="javascript:;" data-url="page/user/changePwd.html"><i class="seraph icon-xiugai"
+                        <dd><a href="javascript:;" data-url="${ctx}/sys/toPasswordChangeManager.action"><i class="seraph icon-xiugai"
                                                                                           data-icon="icon-xiugai"></i><cite>修改密码</cite></a>
                         </dd>
-                        <dd><a href="javascript:;" class="showNotice"><i
-                                class="layui-icon">&#xe645;</i><cite>系统公告</cite><span
-                                class="layui-badge-dot"></span></a></dd>
                         <dd pc><a href="javascript:;" class="functionSetting"><i class="layui-icon">&#xe620;</i><cite>功能设定</cite><span
                                 class="layui-badge-dot"></span></a></dd>
                         <dd pc><a href="javascript:;" class="changeSkin"><i
                                 class="layui-icon">&#xe61b;</i><cite>更换皮肤</cite></a></dd>
-                        <dd><a href="${ctx}/resources/page/login/login.html" class="signOut"><i
+                        <dd><a href="${ctx}/Login/logout.action" class="signOut"><i
                                 class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
                     </dl>
                 </li>
@@ -152,20 +149,6 @@
             })
         }
 
-        //页面加载时判断左侧菜单是否显示
-        //通过顶部菜单获取左侧菜单
-        $(".topLevelMenus li,.mobileTopLevelMenus dd").click(function () {
-            if ($(this).parents(".mobileTopLevelMenus").length != "0") {
-                $(".topLevelMenus li").eq($(this).index()).addClass("layui-this").siblings().removeClass("layui-this");
-            } else {
-                $(".mobileTopLevelMenus dd").eq($(this).index()).addClass("layui-this").siblings().removeClass("layui-this");
-            }
-            $(".layui-layout-admin").removeClass("showMenu");
-            $("body").addClass("site-mobile");
-            getData($(this).data("menu"));
-            //渲染顶部窗口
-            tab.tabMove();
-        })
 
         //隐藏左侧导航
         $(".hideMenu").click(function () {
@@ -176,7 +159,7 @@
             $(".layui-layout-admin").toggleClass("showMenu");
             //渲染顶部窗口
             tab.tabMove();
-        })
+        });
 
         //通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
         getData("contentManagement");

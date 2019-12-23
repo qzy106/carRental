@@ -44,9 +44,11 @@ public class MenuController {
 
             nodes.add(new TreeNode(id, pid, icon, title, href, spread));
         }
-        //设置菜单的根节点
+
+        //设置菜单的第一层节点
         Integer pid=1;
 
+        //将没有层级关系的菜单列表转化为有层级关系的(根据要求的json格式)
         return TreeBuilder.build(nodes,pid);
     }
 

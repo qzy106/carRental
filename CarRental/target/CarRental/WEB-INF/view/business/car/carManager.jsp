@@ -97,7 +97,7 @@
                     <div class="layui-form-item magt3">
                         <label class="layui-form-label">车牌号:</label>
                         <div class="layui-input-block">
-                            <input type="text" name="carnumber" class="layui-input" lay-verify="required"
+                            <input type="text" name="carnumber" id="carnumber" class="layui-input" lay-verify="required"
                                    placeholder="请输入车牌号">
                         </div>
                     </div>
@@ -176,6 +176,15 @@
     </form>
 </div>
 <%--修改和增加弹出层结束--%>
+
+
+<%--查看大图的弹出层开始--%>
+<div id="viewImage_div" style="display: none;text-align: center;padding-top: 10px">
+    <img alt="车辆图片" id="viewCarImage" width="550px" height="300px">
+</div>
+
+
+<%--查看大图的弹出层结束--%>
 <%--弹出层结束--%>
 
 
@@ -260,7 +269,7 @@
             console.log(data);
             if (obj.event === 'del') {
                 layer.confirm('真的删除行么?', function (index) {
-                    $.post("${ctx}/car/deleteCar.action?identity=" + data.identity, function (res) {
+                    $.post("${ctx}/car/deleteCar.action?carnumber=" + data.carnumber, function (res) {
                         layer.msg(res.msg);
                         //刷新数据 表格
                         tableIns.reload();
@@ -290,8 +299,10 @@
                     //将jquery对象转换为dom对象  [0]
                     $("#addCarForm")[0].reset();
                     //设置汽车图片为默认图片
-                    $("#showCarImg").attr("src", "${ctx}/file/downloadShowFile.action?path=images/defaultImg.jpg")
-                    $("#carimg").val("images/defaultImg.jpg")
+                    $("#showCarImg").attr("src", "${ctx}/file/downloadShowFile.action?path=images/defaultImg.jpg");
+                    $("#carimg").val("images/defaultImg.jpg");
+                    //设置车牌号输入框为可修改
+                    $("#carnumber").removeAttr("readonly");
                     url = "${ctx}/car/addCar.action";
                 }
 
@@ -310,6 +321,8 @@
                     form.val('addCarForm', data);
                     //显示图片
                     $("#showCarImg").attr('src', '${ctx}/file/downloadShowFile.action?path=' + data.carimg);
+                    //设置车牌号的属性为只读
+                    $("#carnumber").attr("readonly","readonly");
                     url = "${ctx}/car/updateCar.action";
                 }
             })
@@ -351,7 +364,16 @@
 
         //查看大图
         function viewImage(data) {
-            layer.msg("查看大图");
+             mainIndex = layer.open({
+                type: 1,
+                title: data.carnumber+"的车辆图片",
+                content: $("#viewImage_div"),
+                area: ["600px", '370px'],
+                success: function (index) {
+                    $("#viewCarImage").attr("src","${ctx}/file/downloadShowFile.action?path="+data.carimg);
+                }
+
+            })
         }
 
 
