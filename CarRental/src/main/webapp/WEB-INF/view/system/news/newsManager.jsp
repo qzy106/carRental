@@ -33,6 +33,8 @@
                 <input type="text" name="content" autocomplete="off" class="layui-input">
             </div>
         </div>
+    </div>
+    <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">开始时间:</label>
             <div class="layui-input-inline">

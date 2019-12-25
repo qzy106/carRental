@@ -204,7 +204,7 @@
             , url: '${ctx}/car/loadAllCar.action'  //数据接口
             , title: '车辆数据表'  //数据导出来时的标题
             , toolbar: '#carToolBar'  //头部工具栏
-            , height: 'full'
+            , height: 'full-250'
             , cols: [[   //列表数据
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'carnumber', title: '车牌号', align: 'center', width: '120'}

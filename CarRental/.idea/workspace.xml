@@ -13,12 +13,26 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -41,20 +55,23 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/system/error" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15285996" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\webapp\resources\images" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\webapp\WEB-INF\view\system\error" />
+      <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\resources" />
       <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\webapp\WEB-INF\view\system\main" />
       <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\webapp\WEB-INF\view\stat" />
       <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\resources\mapper\stat" />
-      <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\webapp\WEB-INF\view\business\check" />
-      <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\resources\mapper\bus" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.qzy.bus.vo" />
@@ -217,7 +234,18 @@
       <workItem from="1576824108582" duration="385000" />
       <workItem from="1577012016998" duration="3971000" />
       <workItem from="1577073681020" duration="5036000" />
-      <workItem from="1577080421504" duration="1057000" />
+      <workItem from="1577080421504" duration="1830000" />
+      <workItem from="1577089628218" duration="14000" />
+      <workItem from="1577091960702" duration="1293000" />
+      <workItem from="1577101876087" duration="126000" />
+      <workItem from="1577103660381" duration="313000" />
+      <workItem from="1577105332018" duration="1598000" />
+      <workItem from="1577158641306" duration="922000" />
+      <workItem from="1577163452980" duration="1126000" />
+      <workItem from="1577170288262" duration="385000" />
+      <workItem from="1577173209467" duration="607000" />
+      <workItem from="1577177896791" duration="3971000" />
+      <workItem from="1577189483664" duration="6842000" />
     </task>
     <servers />
   </component>

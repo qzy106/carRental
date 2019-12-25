@@ -81,6 +81,11 @@
 
     <!--  druid数据源监控配置结束-->
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/view/system/error/404.jsp</location>
+    </error-page>
+
 
 
 </web-app>

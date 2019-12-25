@@ -158,7 +158,6 @@
                 elem: '#carTable'    //渲染的目标数据
                 , url: '${ctx}/car/loadAllCar.action?isrenting=0'  //数据接口
                 , title: '车辆列表'  //数据导出来时的标题
-                , height: 'full'
                 , cols: [[   //列表数据
                     {field: 'carnumber', title: '车牌号', align: 'center', width: '120'}
                     , {field: 'cartype', title: '车辆类型', align: 'center', width: '100'}

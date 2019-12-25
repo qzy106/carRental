@@ -26,7 +26,7 @@
 </blockquote>
 <div class="layui-row layui-col-space10">
     <div class="layui-col-lg6 layui-col-md6">
-        <blockquote class="layui-elem-quote title">最新文章 <i class="layui-icon layui-red">&#xe756;</i></blockquote>
+        <blockquote class="layui-elem-quote title">系统公告 <i class="layui-icon layui-red">&#xe756;</i></blockquote>
         <table class="layui-table mag0" lay-skin="line">
             <colgroup>
                 <col>

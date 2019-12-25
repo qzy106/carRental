@@ -174,7 +174,7 @@
             , url: '${ctx}/customer/loadAllCustomer.action'  //数据接口
             , title: '客户数据表'  //数据导出来时的标题
             , toolbar: '#customerToolBar'  //头部工具栏
-            , height: 'full-150'
+            , height: 'full-250'
             , cols: [[   //列表数据
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'identity', title: '身份证号', align: 'center', width: '180'}
@@ -188,7 +188,7 @@
                     }
                 }
                 , {field: 'createtime', title: '录入时间', align: 'center', width: '180'}
-                , {fixed: 'right', title: '操作', toolbar: '#customerBar', width: 260, align: 'center'}
+                , {fixed: 'right', title: '操作', toolbar: '#customerBar', width: 200, align: 'center'}
             ]]
             , page: true
             , done: function (data, curr, count) {

@@ -49,15 +49,13 @@
                        class="layui-input">
             </div>
         </div>
-    </div>
-
-    <div class="layui-form-item" style="text-align: center">
         <div class="layui-inline">
             <button type="button" class="layui-btn layui-btn-normal  layui-icon layui-icon-search" id="doSearch">查询
             </button>
             <button type="reset" class="layui-btn layui-btn-warm  layui-icon layui-icon-refresh">重置</button>
         </div>
     </div>
+
 </form>
 <%--搜索条件结束--%>
 
@@ -102,7 +100,7 @@
             , url: '${ctx}/logInfo/loadAllLogInfo.action'  //数据接口
             , title: '日志数据表'  //数据导出来时的标题
             , toolbar: '#userToolBar'  //头部工具栏
-            , height: 'full-250'
+            , height: 'full-200'
             , cols: [[   //列表数据
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'id', title: 'ID', align: 'center'}
