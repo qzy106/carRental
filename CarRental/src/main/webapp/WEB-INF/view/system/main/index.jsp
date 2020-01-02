@@ -113,7 +113,7 @@
     </div>
     <!-- 底部 -->
     <div class="layui-footer footer">
-        <p><span>大家好，我是渣渣辉</span></p>
+        <p><span>copyright @2019 幸得识卿桃花面</span></p>
     </div>
 </div>
 

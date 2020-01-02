@@ -55,7 +55,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/system/error" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SpringMVC_Mybatis_Annotation" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15285996" />
@@ -63,8 +63,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\webapp\resources\images" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.qzy.stat.service.impl" />
+      <recent name="com.qzy.bus.service.impl" />
+      <recent name="com.qzy.sys.service.impl" />
+      <recent name="com.qzy.sys.utils" />
+      <recent name="com.qzy.sys.service" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\webapp\WEB-INF\view\system\error" />
@@ -80,12 +84,8 @@
       <recent name="com.qzy.bus.service.impl" />
       <recent name="com.qzy.sys.controller" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.qzy.stat.service.impl" />
-      <recent name="com.qzy.bus.service.impl" />
-      <recent name="com.qzy.sys.service.impl" />
-      <recent name="com.qzy.sys.utils" />
-      <recent name="com.qzy.sys.service" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\25760\IdeaProjects\CarRental\src\main\webapp\resources\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -246,6 +246,17 @@
       <workItem from="1577173209467" duration="607000" />
       <workItem from="1577177896791" duration="3971000" />
       <workItem from="1577189483664" duration="6842000" />
+      <workItem from="1577345278631" duration="826000" />
+      <workItem from="1577346744587" duration="414000" />
+      <workItem from="1577359423410" duration="567000" />
+      <workItem from="1577367773212" duration="730000" />
+      <workItem from="1577431724355" duration="1321000" />
+      <workItem from="1577512216609" duration="871000" />
+      <workItem from="1577529612834" duration="23000" />
+      <workItem from="1577673251849" duration="2891000" />
+      <workItem from="1577756893528" duration="46000" />
+      <workItem from="1577863200586" duration="1332000" />
+      <workItem from="1577929619106" duration="6236000" />
     </task>
     <servers />
   </component>

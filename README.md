@@ -92,7 +92,7 @@ and createtime <![CDATA[<=]]>#{endTime}
 | 2                                 | 2             |
 | 2                                 | 3             |
 
-#####1.已知角色id=1 查询当前角色所拥有的菜单
+**1.已知角色id=1 查询当前角色所拥有的菜单**
 
 ```sql
 select t1.* from sys_menu t1 inner join sys_role_menu t2 on(t1.id=t2.mid) where t2.rid=1
@@ -100,9 +100,7 @@ select t1.* from sys_menu t1 inner join sys_role_menu t2 on(t1.id=t2.mid) where 
 
 
 
-
-
-##### 2.已知用户id=userid  查询当前用户拥有的所有角色
+**2.已知用户id=userid  查询当前用户拥有的所有角色**
 
 ```sql
 select t1.* from sys_role t1 inner join sys_role_user t2 on(t1.id=t2.rid) where t2.uid=userid
@@ -110,7 +108,7 @@ select t1.* from sys_role t1 inner join sys_role_user t2 on(t1.id=t2.rid) where 
 
 
 
-##### 3.已知用户id=userid 查询当前用户拥有的所有权限{菜单}
+3.已知用户id=userid 查询当前用户拥有的所有权限{菜单}**
 
 ```sql
 select distinct t1.* from sys_menu t1 inner join sys_role_menu t2 inner join sys_role_user t3 on(t1.id=t2.mid and t2.rid=t3.rid)
@@ -225,7 +223,7 @@ web.xml
 
 #### 6.解决layui数据表格删除最后一条数据的问题（删除后停留在最后一页，显示没有数据）
 
-![1576052681943](https://github.com/qzy106/carRental/blob/master/课设问题记录/1576052681943.png)
+![1576052681943](.\课设问题记录\1576052681943.png)
 
 
 
@@ -275,11 +273,7 @@ web.xml
         });
 ```
 
-
-
-
-
-##### controller
+**controller**
 
 ```java 
 package com.qzy.sys.controller;
@@ -350,7 +344,7 @@ public class FileController {
 
 ```
 
-##### 工具类
+**工具类**
 
 AppFileUtils（上传和下载的一些工具）
 
@@ -621,7 +615,7 @@ public class RandomUtils {
   [^参考链接]: <https://www.w3school.com.cn/sql/func_date_format.asp> 
 
 ```sql
- select opername as name,sum(price) as value from bus_rent where DATE_FORMAT(createtime,"%Y")=#{year} group by opername
+ select opername as name,sum(price) as value from bus_rent where DATE_FORMAT(createtime,"%Y")=#{year} group by opername  
 ```
 
 - 查询公司年度十二个月份的销售额
@@ -702,3 +696,88 @@ session失效后，刷新tab页跳转到登陆页面后，登陆页面会嵌套�
 ```
 
 完美解决！！！
+
+
+
+------
+
+
+
+#### 14.补充（log4j的配置）
+
+log4j的配置
+
+1. 导入依赖(同时使用sel4j和log4j)
+
+   ```xml
+   		   <dependency>
+                   <groupId>log4j</groupId>
+                   <artifactId>log4j</artifactId>
+                   <version>1.2.17</version>
+               </dependency>
+   
+               <dependency>
+                   <groupId>org.slf4j</groupId>
+                   <artifactId>slf4j-api</artifactId>
+                   <version>1.7.26</version>
+               </dependency>
+   
+               <dependency>
+                   <groupId>org.slf4j</groupId>
+                   <artifactId>slf4j-log4j12</artifactId>
+                   <version>1.7.26</version>
+               </dependency>
+   ```
+
+2. 类路径下添加log4j.properties
+
+   ```properties
+   # Global logging configuration
+   log4j.rootLogger=DEBUG, stdout
+   # MyBatis logging configuration...
+   log4j.logger.org.mybatis.example.BlogMapper=TRACE
+   # Console output...
+   log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+   log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+   log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
+   ```
+
+3. 添加mybatis.cfg.xml(我看别人都要这么写，但我这个好象不写不行T_T...)
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE configuration
+       PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+       "http://mybatis.org/dtd/mybatis-3-config.dtd">
+   <configuration>
+    <settings>
+    <setting name="logImpl" value="LOG4J"/>
+    </settings>
+   </configuration>
+   ```
+
+4. 在dao层配置sqlSessionFactory时中导入该配置文件
+
+   ```xml
+    <!-- 声明sessionFactory  并注入mybatis.cfg.xml-->
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+           <!-- 注入数据源 -->
+           <property name="dataSource" ref="dataSource"/>
+           <!--日志-->
+           <property name="configLocation" value="classpath:mybatis.cfg.xml"/>
+           <!-- 注入mapper.xml -->
+           <property name="mapperLocations">
+               <array>
+                   <value>classpath:mapper/*/*Mapper.xml</value>
+               </array>
+           </property>
+           <!-- 插件 -->
+           <property name="plugins">
+               <array>
+                   <bean class="com.github.pagehelper.PageInterceptor"></bean>
+               </array>
+           </property>
+       </bean>
+   ```
+
+   
